@@ -1,0 +1,82 @@
+{% extends 'wears/base.html' %}
+
+{% load static %}
+
+{% block title %}Female wears{% endblock %}
+
+{% block content %}
+
+<div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://res.cloudinary.com/dykhctgak/image/upload/v1690544689/femalebg_s9dvvi.jpg" class="d-block w-100 h-60" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://res.cloudinary.com/dykhctgak/image/upload/v1690544691/femalebg-1_upyawz.jpg" class="d-block w-100 h-60" alt="...">
+                                
+            </div>
+            <div class="carousel-item">
+                <img src="https://res.cloudinary.com/dykhctgak/image/upload/v1690544876/pexels-mart-production-7679450_n4ytvp.jpg" class="d-block w-100 h-60" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <h2 class="title text-info">Our Female Wears</h2>
+            <div class="row">
+                {% for femalewear in femalewears %}
+                <div class="col-md-4 p-3 prod">
+                    <div class="card" style="width: 14rem;">
+                        <img src="{{ femalewear.wImage }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 id="fem{{ femalewear.id }}" class="card-title">{{ femalewear.name }}</h5>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="femalewear{{ femalewear.id }}" value="{{ femalewear.priceM }}" checked>
+                                    M: {{ femalewear.priceM }} $
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="femalewear{{ femalewear.id }}" value="{{ femalewear.priceL }}">
+                                    L: {{ femalewear.priceL }} $
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <!--<button class="btn-info mt-3" onclick="addBurger('{{ footwear.id }}')">Add to cart</button>-->
+                            <button class="btn mt-3 btn-info" onclick="addFemalewear('{{ femalewear.id }}')">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 order">
+            <div class="bg-dark p-4 rounded text-light">
+                <h2 class="text-center">Order List</h2>
+                <ul id="wcart"></ul>
+                <h4 class="text-end" id="wtotal">Total: 0 $</h4>
+                <button class="btn btn-danger"><a href="{% url 'wears:order' %}">Proceed</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="{% static 'wears/js/female.js' %}"></script>
+{% endblock %}

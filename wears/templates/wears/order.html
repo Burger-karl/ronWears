@@ -1,0 +1,55 @@
+{% extends 'wears/base.html' %}
+
+{% load static %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid m-4">
+        <div class="row">
+            {% if user.is_authenticated %}
+            <h2>Welcome {{ user.username }}</h2>
+            {% endif %}
+            <div class="col-md-7 text-center">
+                <h2>Order</h2>
+                <div class="row orders">
+                    <div class="col-md-3" id="name">
+                        <h3>Name</h3>
+                    </div>
+
+                    <div class="col-md-3" id="size">
+                        <h3>Size</h3>
+                    </div>
+
+                    <div class="col-md-3" id="price">
+                        <h3>Price</h3>
+                    </div>
+                    <div class="col-md-1" id="rm">
+
+                    </div>        
+                </div>
+                <h2 id="total">Total:</h2>
+            </div>
+
+            <div class="col-md-5 mt-4">
+                <h2 class="mb-4">Message</h2>
+                <textarea name="message" id="message" cols="40" rows="5"></textarea>
+                {% if user.is_authenticated %}
+                <div class="ml-auto m-4">
+                    <button type="submit" class="btn-success" onclick="order()">Submit</button>
+                </div>
+                {% else %}
+                <div class="ml-auto m-4">
+                    <button class="btn-success"><a href="{% url 'wears:login' %}" class="text-light" style="text-decoration: none;">Login</a></button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'wears/js/cart.js' %}"></script>
+
+{% endblock %}
