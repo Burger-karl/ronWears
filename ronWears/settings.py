@@ -26,7 +26,7 @@ SECRET_KEY = '1hu4%4w+0!*+=50$xox%*h@xd$af5jq6f%k41o3*_=#o*qjd+('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ronwears.onrender.com']
 
 
 # Application definition
